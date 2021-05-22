@@ -1,0 +1,161 @@
+
+$border-color:#808080;
+
+$whs:100,200,285,300,400,500;//一些较大的尺寸，用于设定width,height等
+$mps:5,10,20,30,40,50;//中等尺寸，用于设定margin,padding等
+$bds:1,2,3,4,5;//小尺寸，用于设定border等
+$per:0,10,20,30,40,50,60,70,80,90,100;//百分比，记得在写mixin时除以100
+$unit:px;//单位，可设定自己习惯使用的单位，如em
+
+
+$classBg:w,h;
+$classMd:p,pl,pr,pt,pb,m,ml,mr,mt,mb;
+$classSm:b,bl,br,bt,bb;
+
+//宽度 高度  疑惑点：怎么将mixin的id用变量取代？
+@mixin w($i){
+  width: #{$i}#{$unit};
+}
+
+@mixin h($i){
+  height: #{$i}#{$unit};
+}
+@each $i in $whs {
+  @each $c in $classBg{
+    .#{$c}#{$i}{
+      @if ($c==w) {
+        @include w($i)
+      }
+      @if ($c==h) {
+        @include h($i)
+      }
+    }
+  }
+}
+
+//paddings margins
+.pa{
+  padding: auto;
+}
+.ma{
+  margin: auto;
+}
+@mixin p($i){
+  padding: #{$i}#{$unit};
+}
+@mixin pl($i){
+  padding-left: #{$i}#{$unit};
+}
+@mixin pr($i){
+  padding-right: #{$i}#{$unit};
+}
+@mixin pt($i){
+  padding-top: #{$i}#{$unit};
+}
+@mixin pb($i){
+  padding-bottom: #{$i}#{$unit};
+}
+@mixin m($i){
+  margin: #{$i}#{$unit};
+}
+@mixin ml($i){
+  margin-left: #{$i}#{$unit};
+}
+@mixin mr($i){
+  margin-right: #{$i}#{$unit};
+}
+@mixin mt($i){
+  margin-top: #{$i}#{$unit};
+}
+@mixin mb($i){
+  margin-bottom: #{$i}#{$unit};
+}
+
+@each $i in $mps {
+  @each $c in $classMd{
+    .#{$c}#{$i}{
+      @if ($c==p) {
+        @include p($i)
+      }
+      @if ($c==pl) {
+        @include pl($i)
+      }
+      @if ($c==pr) {
+        @include pr($i)
+      }
+      @if ($c==pt) {
+        @include pt($i)
+      }
+      @if ($c==pb) {
+        @include pb($i)
+      }
+      @if ($c==m) {
+        @include m($i)
+      }
+      @if ($c==ml) {
+        @include ml($i)
+      }
+      @if ($c==mr) {
+        @include mr($i)
+      }
+      @if ($c==mt) {
+        @include mt($i)
+      }
+      @if ($c==mb) {
+        @include mb($i)
+      }
+    }
+  }
+}
+
+//borders
+@mixin b($i){
+  border: #{$i}#{$unit} solid $border-color;
+}
+@mixin bl($i){
+  border:none;
+  border-left: #{$i}#{$unit} solid $border-color;
+}
+@mixin br($i){
+  border:none;
+  border-right: #{$i}#{$unit} solid $border-color;
+}
+@mixin bt($i){
+  border:none;
+  border-top: #{$i}#{$unit} solid $border-color;
+}
+@mixin bb($i){
+  border:none;
+  border-bottom: #{$i}#{$unit} solid $border-color;
+}
+@each $i in $bds {
+  @each $c in $classSm{
+    .#{$c}#{$i}{
+      @if ($c==b) {
+        @include b($i)
+      }
+      @if ($c==bl) {
+        @include bl($i)
+      }
+      @if ($c==br) {
+        @include br($i)
+      }
+      @if ($c==bt) {
+        @include bt($i)
+      }
+      @if ($c==bb) {
+        @include bb($i)
+      }
+    }
+  }
+}
+
+//opacities
+@mixin op($i){
+  opacity: $i/100;
+}
+@each $i in $per {
+  .op#{$i}{
+    @include op($i)
+  }
+}
