@@ -1,34 +1,53 @@
 
 $border-color:#808080;
 
+$primary: #e6e6e6;
+$info:#532e1c;
+$success: #0e918c;
+$warning: #f6830f;
+$error: #bb2205;
+$dark:#232323;
+$light:#e6e6e6;
+
+
 $whs:100,200,285,300,400,500;//一些较大的尺寸，用于设定width,height等
 $mps:5,10,20,30,40,50;//中等尺寸，用于设定margin,padding等
 $bds:1,2,3,4,5;//小尺寸，用于设定border等
 $per:0,10,20,30,40,50,60,70,80,90,100;//百分比，记得在写mixin时除以100
+$fs:12,14,16,18,20,24,28,32,36,48;
 $unit:px;//单位，可设定自己习惯使用的单位，如em
 
 
-$classBg:w,h;
-$classMd:p,pl,pr,pt,pb,m,ml,mr,mt,mb;
-$classSm:b,bl,br,bt,bb;
+$classBg:(w:width,h:height);
+$classMd:(p:padding,pl:padding-left,pr:padding-right,pt:padding-top,pb:padding-bottom,m:margin,ml:margin-left,mr:margin-right,mt:margin-top,mb:margin-bottom);
+$classSm:(b:border,bl:border-left,br:border-right,bt:border-top,bb:border-bottom);
 
-//宽度 高度  疑惑点：怎么将mixin的id用变量取代？
-@mixin w($i){
-  width: #{$i}#{$unit};
+$colors:(
+  Primary: $primary,
+  Info:  $info,
+  Success: $success,
+  Warning: $warning,
+  Error: $error,
+  Dark: $dark,
+  Light: $light,
+);
+$classColor:(bc:background-color,tc:color,bdc:border-color);
+
+
+//颜色类
+@each $key,$val in $colors{
+  @each $key1,$val1 in $classColor{
+    .#{$key1}#{$key}{
+      #{$val1}: $val
+    }
+  }
 }
 
-@mixin h($i){
-  height: #{$i}#{$unit};
-}
+//宽高类
 @each $i in $whs {
-  @each $c in $classBg{
-    .#{$c}#{$i}{
-      @if ($c==w) {
-        @include w($i)
-      }
-      @if ($c==h) {
-        @include h($i)
-      }
+  @each $key,$val in $classBg{
+    .#{$key}#{$i}{
+     #{$val}:$i
     }
   }
 }
@@ -40,122 +59,38 @@ $classSm:b,bl,br,bt,bb;
 .ma{
   margin: auto;
 }
-@mixin p($i){
-  padding: #{$i}#{$unit};
-}
-@mixin pl($i){
-  padding-left: #{$i}#{$unit};
-}
-@mixin pr($i){
-  padding-right: #{$i}#{$unit};
-}
-@mixin pt($i){
-  padding-top: #{$i}#{$unit};
-}
-@mixin pb($i){
-  padding-bottom: #{$i}#{$unit};
-}
-@mixin m($i){
-  margin: #{$i}#{$unit};
-}
-@mixin ml($i){
-  margin-left: #{$i}#{$unit};
-}
-@mixin mr($i){
-  margin-right: #{$i}#{$unit};
-}
-@mixin mt($i){
-  margin-top: #{$i}#{$unit};
-}
-@mixin mb($i){
-  margin-bottom: #{$i}#{$unit};
-}
-
 @each $i in $mps {
-  @each $c in $classMd{
-    .#{$c}#{$i}{
-      @if ($c==p) {
-        @include p($i)
-      }
-      @if ($c==pl) {
-        @include pl($i)
-      }
-      @if ($c==pr) {
-        @include pr($i)
-      }
-      @if ($c==pt) {
-        @include pt($i)
-      }
-      @if ($c==pb) {
-        @include pb($i)
-      }
-      @if ($c==m) {
-        @include m($i)
-      }
-      @if ($c==ml) {
-        @include ml($i)
-      }
-      @if ($c==mr) {
-        @include mr($i)
-      }
-      @if ($c==mt) {
-        @include mt($i)
-      }
-      @if ($c==mb) {
-        @include mb($i)
-      }
+  @each $key,$val in $classMd{
+    .#{$key}#{$i}{
+     #{$val}:$i
     }
   }
-}
-
-//borders
-@mixin b($i){
-  border: #{$i}#{$unit} solid $border-color;
-}
-@mixin bl($i){
-  border:none;
-  border-left: #{$i}#{$unit} solid $border-color;
-}
-@mixin br($i){
-  border:none;
-  border-right: #{$i}#{$unit} solid $border-color;
-}
-@mixin bt($i){
-  border:none;
-  border-top: #{$i}#{$unit} solid $border-color;
-}
-@mixin bb($i){
-  border:none;
-  border-bottom: #{$i}#{$unit} solid $border-color;
 }
 @each $i in $bds {
-  @each $c in $classSm{
-    .#{$c}#{$i}{
-      @if ($c==b) {
-        @include b($i)
-      }
-      @if ($c==bl) {
-        @include bl($i)
-      }
-      @if ($c==br) {
-        @include br($i)
-      }
-      @if ($c==bt) {
-        @include bt($i)
-      }
-      @if ($c==bb) {
-        @include bb($i)
-      }
+  @each $key,$val in $classSm{
+    .#{$key}#{$i}{
+     #{$val}:$i
     }
   }
 }
 
-//opacities
+
+//透明度
 @mixin op($i){
   opacity: $i/100;
 }
 @each $i in $per {
   .op#{$i}{
     @include op($i)
+  }
+}
+
+//font-sizes
+@mixin fs($i) {
+  font-size: #{$i}px;
+}
+@each $i in $fs {
+  .fs#{$i}{
+    @include fs($i)
   }
 }
