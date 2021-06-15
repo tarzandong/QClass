@@ -186,6 +186,10 @@
   margin-bottom: 5 px;
 }
 
+.zi5 {
+  z-index: 5 px;
+}
+
 .p10 {
   padding: 10 px;
 }
@@ -224,6 +228,10 @@
 
 .mb10 {
   margin-bottom: 10 px;
+}
+
+.zi10 {
+  z-index: 10 px;
 }
 
 .p20 {
@@ -266,6 +274,10 @@
   margin-bottom: 20 px;
 }
 
+.zi20 {
+  z-index: 20 px;
+}
+
 .p30 {
   padding: 30 px;
 }
@@ -304,6 +316,10 @@
 
 .mb30 {
   margin-bottom: 30 px;
+}
+
+.zi30 {
+  z-index: 30 px;
 }
 
 .p40 {
@@ -346,6 +362,10 @@
   margin-bottom: 40 px;
 }
 
+.zi40 {
+  z-index: 40 px;
+}
+
 .p50 {
   padding: 50 px;
 }
@@ -386,28 +406,8 @@
   margin-bottom: 50 px;
 }
 
-.zi5 {
-  z-index: 5;
-}
-
-.zi10 {
-  z-index: 10;
-}
-
-.zi20 {
-  z-index: 20;
-}
-
-.zi30 {
-  z-index: 30;
-}
-
-.zi40 {
-  z-index: 40;
-}
-
 .zi50 {
-  z-index: 50;
+  z-index: 50 px;
 }
 
 .b1 {
@@ -607,43 +607,43 @@
 }
 
 .fs12 {
-  font-size: 12px;
+  font-size: 12 px;
 }
 
 .fs14 {
-  font-size: 14px;
+  font-size: 14 px;
 }
 
 .fs16 {
-  font-size: 16px;
+  font-size: 16 px;
 }
 
 .fs18 {
-  font-size: 18px;
+  font-size: 18 px;
 }
 
 .fs20 {
-  font-size: 20px;
+  font-size: 20 px;
 }
 
 .fs24 {
-  font-size: 24px;
+  font-size: 24 px;
 }
 
 .fs28 {
-  font-size: 28px;
+  font-size: 28 px;
 }
 
 .fs32 {
-  font-size: 32px;
+  font-size: 32 px;
 }
 
 .fs36 {
-  font-size: 36px;
+  font-size: 36 px;
 }
 
 .fs48 {
-  font-size: 48px;
+  font-size: 48 px;
 }
 
 .fwb {

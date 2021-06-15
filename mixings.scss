@@ -22,8 +22,10 @@ $perClass:(op:opacity,bdr:border-radius);
 $justifys:(C:center,SA:space-around,SE:space-evenly,SB:space-between,S:flex-start,E:flex-end);//flex布局中的对齐方式
 
 $classBg:(w:width,h:height);
-$classMd:(p:padding,pl:padding-left,pr:padding-right,pt:padding-top,pb:padding-bottom,m:margin,ml:margin-left,mr:margin-right,mt:margin-top,mb:margin-bottom);
+$classMd:(p:padding,pl:padding-left,pr:padding-right,pt:padding-top,pb:padding-bottom,m:margin,ml:margin-left,mr:margin-right,mt:margin-top,mb:margin-bottom,zi:z-index);
 $classSm:(b:border,bl:border-left,br:border-right,bt:border-top,bb:border-bottom);
+$fsClass:(fs:font-size);
+
 
 $colors:(
   Primary: $primary,
@@ -75,13 +77,6 @@ $classColor:(bc:background-color,tc:color,bdc:border-color);
     }
   }
 }
-@each $i in $mps {
-  
-    .zi#{$i}{
-     z-index:$i;
-    }
-  
-}
 
 //border
 @each $i in $bds {
@@ -104,15 +99,15 @@ $classColor:(bc:background-color,tc:color,bdc:border-color);
 }
 
 //font-sizes
-@mixin fs($i) {
-  font-size: #{$i}#{$unit};
-}
 @each $i in $fs {
-  .fs#{$i}{
-    @include fs($i)
+  @each $key,$val in $fsClass{
+    .#{$key}#{$i}{
+      #{$val}:$i$unit;
+    }
   }
 }
 
+//font-weight
 .fwb{
   font-weight: bold;
 }
@@ -139,7 +134,7 @@ $classColor:(bc:background-color,tc:color,bdc:border-color);
   }
 }
 
-
+//flex值
 @each $i in $bds{ //借用一下小尺寸$bds
   .fl#{$i}{
     flex:$i;
