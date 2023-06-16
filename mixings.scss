@@ -1,48 +1,100 @@
 
-$border-color:#808080;
+// $border-color:#ededed;
+// $mainBG:#f4f5f9;
 
-$primary: #e6e6e6;
-$info:#532e1c;
-$success: #0e918c;
-$warning: #f6830f;
-$error: #bb2205;
-$dark:#232323;
-$light:#e6e6e6;
+// $primary: #e6e6e6;
+// $info:#532e1c;
+// $success: #0e918c;
+// $warning: #f6830f;
+// $error: #bb2205;
+// $gray:#999999;
+// $white:#ffffff;
+// $blue:#3388ff;
+// $dark:#000;
+// $darkMain: #111A19;
+// $darkSecond: #333333;
+// $darkThird: #666666;
+// $darkLight: #666666;
+// $grayB1:#B1B1B1;
+// $grayB4:#ffffff60;
+// $dark1D:#1D1D1D;
+// $yellow:#F3A21F;
+// $green21:#21B505;
+// $redDE:#de4949;
+// $gray33:#333333;
+// $grayDA:#DADADA;
+// $dark21:#212121;
+// $titleBarBG:#ffffff;
+// $grayE8:#e8e8e8;
+// $yellowFF:#ffca64;
+@import './variables.scss';
 
-
-$whs:100,200,285,300,400,500;//一些较大的尺寸，用于设定width,height等
-$mps:5,10,20,30,40,50;//中等尺寸，用于设定margin,padding等
+$whs:20,30,32,36,40,44,45,48,50,60,64,70,80,86,88,90,94,96,100,110,120,130,150,160,168,180,190,200,240,260,280,300,320,350,380,400,440,456,480,500,520,550,560,600,630,640,660,680,720,800,820,850,870,880,900,922,1000, 1350;//一些较大的尺寸，用于设定width,height等
+$mps:1,2,3,4,5,8,10,12,16,20,30,40,50,60;//中等尺寸，用于设定margin,padding等
 $bds:1,2,3,4,5;//小尺寸，用于设定border等
-$fs:12,14,16,18,20,24,28,32,36,48;
+$fs:9,10,12,14,15,16,18,20,24,28,30,32,36,48,50,60,80,150;
 $unit:px;//单位，可设定自己习惯使用的单位，如em
 
 $per:0,5,10,20,30,40,50,60,70,80,90,100;//百分比，记得在写mixin时除以100
-$perClass:(op:opacity,bdr:border-radius);
+$degs:90,180,270;
+
+$perClass:(op:opacity,wp:width,hp:height);
 
 $justifys:(C:center,SA:space-around,SE:space-evenly,SB:space-between,S:flex-start,E:flex-end);//flex布局中的对齐方式
 
-$classBg:(w:width,h:height);
-$classMd:(p:padding,pl:padding-left,pr:padding-right,pt:padding-top,pb:padding-bottom,m:margin,ml:margin-left,mr:margin-right,mt:margin-top,mb:margin-bottom,zi:z-index);
+$classBg:(w:width,h:height,lh:line-height, maxh:max-height, maxw: max-width,);
+$classMd:(bdr:border-radius,bdrtl:border-top-left-radius,bdrtr:border-top-right-radius,bdrbl:border-bottom-left-radius,bdrbr:border-bottom-right-radius,p:padding,pl:padding-left,pr:padding-right,pt:padding-top,pb:padding-bottom,m:margin,ml:margin-left,mr:margin-right,mt:margin-top,mb:margin-bottom,zi:z-index,lh:line-height,gp:gap);
 $classSm:(b:border,bl:border-left,br:border-right,bt:border-top,bb:border-bottom);
 $fsClass:(fs:font-size);
 
 
 $colors:(
-  Primary: $primary,
-  Info:  $info,
-  Success: $success,
-  Warning: $warning,
-  Error: $error,
-  Dark: $dark,
-  Light: $light,
+  titleBar:$titleBarBG,
+  mainBG: $mainBG,
+  mainBGI: #0b0a06,
+  primary: $primary,
+  info:  $info,
+  modalBg: #f8f9fa,
+  gray: $gray,
+  graycc: #cccccc,
+  dark33: $gray33,
+  gray1: #dddddd,
+  white:$white,
+  blue:#1BA9FB,
+  dark:$dark,
+  darkMain:$darkMain,
+  darkSecond: $darkSecond,
+  darkThird: $darkThird,
+  redDE:$redDE,
+  green:#92AA08,
+  yellow:$yellow,
+  yellowFF: $yellowFF,
+  orange: #FF7B18,
+  pink: #F98080,
+  red: red,
+  darkLight: $darkLight,
+  wheel: #114DC8,
+  point: #E16242,
+  call: #58DDC9,
+  orderGray: #e6e6e6,
+  eegray: #dbdbdb,
+  dark19: #111a19,
+  none1: #00000000,
+  green13: #13b880
 );
 $classColor:(bc:background-color,tc:color,bdc:border-color);
+
+$aligns: (
+  L: left,
+  R: right,
+  C: center
+);
 
 
 //颜色类
 @each $key,$val in $colors{
   @each $key1,$val1 in $classColor{
-    .#{$key1}#{$key}{
+    .#{$key1}#{""+$key}{
       #{$val1}: $val
     }
   }
@@ -78,6 +130,10 @@ $classColor:(bc:background-color,tc:color,bdc:border-color);
   }
 }
 
+.bbox{
+  box-sizing: border-box;
+}
+
 //border
 @each $i in $bds {
   @each $key,$val in $classSm{
@@ -87,13 +143,33 @@ $classColor:(bc:background-color,tc:color,bdc:border-color);
   }
 }
 
- 
+//n行超出显示...
+@each $i in $bds {
+  .line#{$i}{
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;				//溢出内容隐藏
+    text-overflow: ellipsis;		//文本溢出部分用省略号表示
+    display: -webkit-box;			//特别显示模式
+    -webkit-line-clamp: $i;			//行数
+    line-clamp: $i;					
+    -webkit-box-orient: vertical;	//盒子中内容竖直排列
+  }
+}
 
-//透明度,border-radius
+//z-index
+@each $i in $bds {
+  .z#{$i}{
+    z-index: $i;
+  }
+}
+
+
+//透明度
 @each $i in $per {
+  
   @each $key,$val in $perClass{
     .#{$key}#{$i}{
-      #{$val}:$i/100;
+      #{$val}:percentage($i*0.01);
     }
   }
 }
@@ -120,11 +196,21 @@ $classColor:(bc:background-color,tc:color,bdc:border-color);
   display: flex;
   flex-direction: row;
 }
+.flxRR{
+  display: flex;
+  flex-direction: row-reverse;
+}
 .flxC{
   display: flex;
   flex-direction: column;
 }
-
+.flxCR{
+  display: flex;
+  flex-direction: column-reverse;
+}
+.fla {
+  flex:auto;
+}
 @each $key,$val in $justifys {
   .ai#{$key} {
     align-items: $val;
@@ -134,10 +220,23 @@ $classColor:(bc:background-color,tc:color,bdc:border-color);
   }
 }
 
+.noShrink{
+  flex-shrink: 0;
+}
+.noGrow{
+  flex-grow: 0;
+}
+
 //flex值
 @each $i in $bds{ //借用一下小尺寸$bds
   .fl#{$i}{
     flex:$i;
+  }
+	.z#{$i}{
+		z-index:$i
+	}
+  .fsrk#{$i}{
+    flex-shrink: $i;
   }
 }
 
@@ -145,6 +244,101 @@ $classColor:(bc:background-color,tc:color,bdc:border-color);
 //scale
 @each $p in $per {
   .sc#{$p} {
-    transform: scale($p/100);
+    transform: scale($p*0.01);
   }
+}
+
+//rotate
+@each $d in $degs {
+	.rot#{$d} {
+		transform: rotate(#{$d}deg);
+	}
+}
+//text-align
+@each $key,$align in $aligns {
+  .ta#{$key} {
+    text-align: $align;
+  }
+}
+
+.psr{
+  position: relative;
+}
+.psa{
+  position: absolute;
+}
+.psf{
+  position: fixed;
+}
+.pss{
+  position: sticky;
+}
+
+.bgImg{
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.noWrap {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  // word-break: break-all;
+  word-wrap: break-word;
+}
+
+.ova{
+  overflow: auto;
+}
+
+.ovs{
+  overflow: scroll;
+}
+
+.ovh{
+  overflow: hidden;
+}
+.ovv{
+  overflow: visible;
+}
+.csp{
+  cursor: pointer;
+}
+
+.csn {
+  cursor:not-allowed;
+}
+
+.csh {
+  cursor: help;
+}
+
+.wdbrk{
+  word-break: break-all;
+}
+
+.line2 {
+  word-break: break-all;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; /* 超出几行省略 */
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+.cbutton {
+  height: 40px;
+  border-radius: 8px;
+  background-color: #ffca64;
+  color:#1b1b1c;
+  font-size: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.cbutton:active {
+  opacity: 0.5;
 }
