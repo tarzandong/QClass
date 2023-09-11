@@ -1,36 +1,9 @@
 
-// $border-color:#ededed;
-// $mainBG:#f4f5f9;
 
-// $primary: #e6e6e6;
-// $info:#532e1c;
-// $success: #0e918c;
-// $warning: #f6830f;
-// $error: #bb2205;
-// $gray:#999999;
-// $white:#ffffff;
-// $blue:#3388ff;
-// $dark:#000;
-// $darkMain: #111A19;
-// $darkSecond: #333333;
-// $darkThird: #666666;
-// $darkLight: #666666;
-// $grayB1:#B1B1B1;
-// $grayB4:#ffffff60;
-// $dark1D:#1D1D1D;
-// $yellow:#F3A21F;
-// $green21:#21B505;
-// $redDE:#de4949;
-// $gray33:#333333;
-// $grayDA:#DADADA;
-// $dark21:#212121;
-// $titleBarBG:#ffffff;
-// $grayE8:#e8e8e8;
-// $yellowFF:#ffca64;
 @import './variables.scss';
 
-$whs:20,30,32,36,40,44,45,48,50,60,64,70,80,86,88,90,94,96,100,110,120,130,150,160,168,180,190,200,240,260,280,300,320,350,380,400,440,456,480,500,520,550,560,600,630,640,660,680,720,800,820,850,870,880,900,922,1000, 1350;//一些较大的尺寸，用于设定width,height等
-$mps:1,2,3,4,5,8,10,12,16,20,30,40,50,60;//中等尺寸，用于设定margin,padding等
+$whs:1, 10, 16, 20, 30, 45, 55, 60, 80, 120, 130, 150, 180, 200, 300, 350, 400, 460, 500;//一些较大的尺寸，用于设定width,height等
+$mps:1,2,3,4,5,8,10,12, 15, 16,20,30,40,50,60, 80,100, 130;//中等尺寸，用于设定margin,padding等
 $bds:1,2,3,4,5;//小尺寸，用于设定border等
 $fs:9,10,12,14,15,16,18,20,24,28,30,32,36,48,50,60,80,150;
 $unit:px;//单位，可设定自己习惯使用的单位，如em
@@ -48,41 +21,7 @@ $classSm:(b:border,bl:border-left,br:border-right,bt:border-top,bb:border-bottom
 $fsClass:(fs:font-size);
 
 
-$colors:(
-  titleBar:$titleBarBG,
-  mainBG: $mainBG,
-  mainBGI: #0b0a06,
-  primary: $primary,
-  info:  $info,
-  modalBg: #f8f9fa,
-  gray: $gray,
-  graycc: #cccccc,
-  dark33: $gray33,
-  gray1: #dddddd,
-  white:$white,
-  blue:#1BA9FB,
-  dark:$dark,
-  darkMain:$darkMain,
-  darkSecond: $darkSecond,
-  darkThird: $darkThird,
-  redDE:$redDE,
-  green:#92AA08,
-  yellow:$yellow,
-  yellowFF: $yellowFF,
-  orange: #FF7B18,
-  pink: #F98080,
-  red: red,
-  darkLight: $darkLight,
-  wheel: #114DC8,
-  point: #E16242,
-  call: #58DDC9,
-  orderGray: #e6e6e6,
-  eegray: #dbdbdb,
-  dark19: #111a19,
-  none1: #00000000,
-  green13: #13b880
-);
-$classColor:(bc:background-color,tc:color,bdc:border-color);
+
 
 $aligns: (
   L: left,
